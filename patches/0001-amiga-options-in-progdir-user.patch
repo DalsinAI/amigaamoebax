@@ -1,0 +1,15 @@
+diff --git a/src/unix/UnixOptions.cxx b/src/unix/UnixOptions.cxx
+index 8edb9b2..d045476 100644
+--- a/src/unix/UnixOptions.cxx
++++ b/src/unix/UnixOptions.cxx
+@@ -107,6 +107,10 @@ UnixOptions::getStringValue (const std::string &section,
+ std::string
+ UnixOptions::getOptionsDirectory (void)
+ {
++#if defined (__amigaos__)
++    // AmigaOS: the drawer's own User drawer (amiga_start.c makes it).
++    return std::string ("PROGDIR:User");
++#endif // __amigaos__
+     char *configHome = getenv ("XDG_CONFIG_HOME");
+     std::string configDirectory (NULL == configHome ? "" : configHome);
+     if ( 0 == configDirectory.length () )

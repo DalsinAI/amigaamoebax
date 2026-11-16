@@ -1,0 +1,8 @@
+# What this port builds on: fetched at build time, never kept here.
+# Amoebax 0.2.2 on SDL2 (GPL 2 or later; the art, music and sounds under the
+# Free Art License), carstene1ns/amoebax-sdl2 main 68cbfba (3 Jul 2026)
+AMX_GIT=https://github.com/carstene1ns/amoebax-sdl2.git
+AMX_COMMIT=68cbfba133ba47f202686f9e6f9e23944070666d
+AMX_VERSION=0.2.2
+# SDL 2 and SDL2_mixer are the stove's (GFOpenGPU's link stubs); at run time
+# they are the GFOpenGPU part's SDL2.module and SDL2_mixer.module (Ogg Vorbis)

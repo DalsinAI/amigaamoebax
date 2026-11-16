@@ -1,0 +1,15 @@
+diff --git a/src/ext/cute_png.h b/src/ext/cute_png.h
+--- a/src/ext/cute_png.h
++++ b/src/ext/cute_png.h
+@@ -412,6 +412,11 @@
+ 		if (s->word_index < s->word_count)
+ 		{
+ 			uint32_t word = s->words[s->word_index++];
++#if defined(__BYTE_ORDER__) && __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
++			// The DEFLATE stream is read a little-endian word at a time;
++			// a big-endian CPU (the 68k) has to turn each word round.
++			word = __builtin_bswap32(word);
++#endif
+ 			s->bits |= (uint64_t)word << s->count;
+ 			s->count += 32;
+ 			CUTE_PNG_ASSERT(s->word_index <= s->word_count);
