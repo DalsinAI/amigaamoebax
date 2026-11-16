@@ -1,0 +1,32 @@
+diff --git a/src/File.cxx b/src/File.cxx
+index f434c1d..019bd26 100644
+--- a/src/File.cxx
++++ b/src/File.cxx
+@@ -16,12 +16,14 @@
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ //
++// <sstream> first: AmigaOS's thread header (under <ios>) must come before
++// <unistd.h>, whose read() it would otherwise meet as a macro.
++#include <sstream>
+ #if defined (IS_WIN32_HOST)
+ #include <dirent.h>
+ #else // !IS_WIN32_HOST
+ #include <unistd.h>
+ #endif // IS_WIN32_HOST
+-#include <sstream>
+ #include "File.h"
+ #include "Options.h"
+ 
+diff --git a/src/System.cxx b/src/System.cxx
+index eeef7ab..1643a86 100644
+--- a/src/System.cxx
++++ b/src/System.cxx
+@@ -40,6 +40,7 @@
+ #include "PauseState.h"
+ #include "System.h"
+ #include "VideoErrorState.h"
++#include <ctime>
+ 
+ using namespace Amoebax;
+ 
